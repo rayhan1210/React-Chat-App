@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
-const userRoute = require("./roots/users");
-const authRoute = require("./roots/auth");
+const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
+const convosRoute = require("./routes/convos");
+const msgsRoute = require("./routes/msgs");
 
 const app = express(); // create the application
 
@@ -17,18 +19,13 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true}, ()=>{
 //middleware implementation
 app.use(express.json()) //express.json is abody parser when making a post request
 app.use(helmet());
-app.use(morgan("common"));
+app.use(morgan("common")); //"commo" -> ?
 
-// app.get("/", (req, res)=> {
-//     res.send("Chat app homepage");
-// })
-
-// app.get("/Chat", (req, res) => {
-//     res.send("Chat app Chat page");
-// })
-
-app.use("/api/users", userRoute);
-app.use("/api/auth", authRoute);
+//router for different functionality
+app.use("/users", userRoute);
+app.use("/auth", authRoute);
+app.use("/convos", convosRoute);
+app.use("/msgs", msgsRoute);
 
 app.listen(8800, ()=>{
     console.log("Testing backend server, other");

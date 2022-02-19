@@ -7,15 +7,12 @@ const Msg = require("../models/Msg");
 router.post("/", async (req, res) => {
     // const textMsg = req.body.text;
     try{
-        const newMsg = new Msg({
-            //convoId: req.body.convoId,
-            senderId: req.body.senderId,
-            text: req.body.text
-        });
+        const newMsg = new Msg(req.body); 
+        //req.body -> everything in the body ->convoId,senderId, tex.
         // const textMsg = req.body.text;
 
         // console.log(newMsg);
-        !newMsg && res.status(404).json("cant find convo");
+        // !newMsg && res.status(404).json("cant find convo");
         await newMsg.save();
         res.status(200).json(newMsg);
     }catch(err){
@@ -27,8 +24,11 @@ router.post("/", async (req, res) => {
 
 router.get("/:convoId", async (req, res) => {
     try{
-        const getMsg = await Msg.findById(req.params.convoId);
-        !getMsg && res.status(404).json("cant find convo");
+        const getMsg = await Msg.find({
+            convoId: req.params.convoId
+        });
+        // console.log(req.body.convoId);
+        // !getMsg && res.status(404).json("cant find convo");
         // console.log(getMsg);
         res.status(200).json(getMsg);
     }catch(err){
