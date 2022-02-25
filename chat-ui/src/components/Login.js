@@ -3,7 +3,7 @@ import { useContext, useRef } from 'react';
 import { AuthContext } from '../contextapi/Auth_Context';
 import { useNavigate } from 'react-router-dom';
 import "./login.css";
-import Message from './Message';
+// import Message from './Message';
 import { LoginApiCall } from '../loginApiCall';
 function Login(){
     // using useContext hook, destructing and getting the specific value you need. useContext returns a value and useState returns an array
@@ -13,12 +13,10 @@ function Login(){
     const email = useRef();
     const password = useRef();
     const navigate = useNavigate();
-    const { user, error, isFetch, dispatch } = useContext(AuthContext); //destructuring
+    const { error, dispatch } = useContext(AuthContext); //destructuring
     const handleSubmit = (e) => {
         e.preventDefault(); //prevents page from refreshing on click/submitting
         LoginApiCall({email: email.current.value, password: password.current.value}, dispatch);
-        // console.log(LoginApiCall({email: email.current.value, password: password.current.value}, dispatchInfo));
-        
     };
     return(
         <>

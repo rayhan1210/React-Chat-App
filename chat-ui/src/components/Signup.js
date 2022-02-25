@@ -5,7 +5,7 @@ import "./signup.css";
 import axios from 'axios';
 
 function Signup(props){
-    let navigate = useNavigate();
+    let navigate = useNavigate(); 
     const username = useRef();
     const password = useRef();
     const passwordAgain = useRef();

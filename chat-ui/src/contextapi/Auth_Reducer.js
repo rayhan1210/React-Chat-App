@@ -2,12 +2,12 @@ const AuthReducer = (state, action ) => {
     switch(action.type){
         case "SIGNIN_START":
             return {
-                user: null,
+                user: null, 
                 isFetch: false,
                 error: false,
             };
         case "SIGNIN_SUCCESS":
-            localStorage.setItem("user", JSON.stringify(action.payload.user));
+            // localStorage.setItem("user", JSON.stringify(action.payload.user));
             return {
                 user: action.payload,
                 isFetch: true,

@@ -1,7 +1,7 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import AuthReducer from "./Auth_Reducer";
 const INIT_STATE = {
-    user: null,
+    user: JSON.parse(localStorage.getItem("user")) || null, //parse string in specific from local storage.
     isFetch: false,
     error: false
 }
@@ -17,6 +17,9 @@ export const AuthContextProvide = ({children}) => {
     //useReducer is used to handle what state the website is currently, e.x, state such as init state(signing in), signed successfully,
     // signout or signinfalied. and later using different state to different things like forwarding page or showing error message.
     
+    useEffect(()=>{
+        localStorage.setItem("user", JSON.stringify(state.user));
+    }, [state.user]); //only run the first render
 
     return (
         <AuthContext.Provider 

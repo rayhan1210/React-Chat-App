@@ -3,7 +3,7 @@ const User = require("../models/User");
 const Msg = require("../models/Msg");
 
 
-// add -> send a message
+// add -> start a new convo 
 router.post("/", async (req, res) => {
     // const textMsg = req.body.text;
     try{

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const LoginApiCall = async (userCred, dispatch) => {
+    // const [user, setUser ] = useState("");
     dispatch({type: "SIGNIN_START"});
     try{
         const res = await axios.post("/auth/login", userCred); //wait to check if able to login, ciorrect user detail posted or not

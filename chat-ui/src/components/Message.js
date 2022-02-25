@@ -2,7 +2,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import "./Message.css";
 import { IoMdSend } from "react-icons/io";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contextapi/Auth_Context";
 
 function Message() {
@@ -10,7 +10,11 @@ function Message() {
     
     const{ user, dispatch } = useContext(AuthContext);
     //later user will be used to show who is logged in currently
+    
+    
     return (
+        <>
+        {<div>{user.name}</div> }
         <Container className="messenger-box">
             {/* <div>{user.username}</div> */}
             <Button className="logOutbutton" 
@@ -41,6 +45,7 @@ function Message() {
                     </Col>
                 </Row> 
             </Container>
+            </>
     );
 }
 
