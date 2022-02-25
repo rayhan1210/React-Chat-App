@@ -22,11 +22,11 @@ app.use(helmet());
 app.use(morgan("common")); //"commo" -> ?
 
 //router for different functionality
-app.use("/users", userRoute);
-app.use("/auth", authRoute);
-app.use("/convos", convosRoute);
-app.use("/msgs", msgsRoute);
+app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/convos", convosRoute);
+app.use("/api/msgs", msgsRoute);
 
 app.listen(8800, ()=>{
-    console.log("Testing backend server, other");
+    console.log("Testing backend server!!!");
 });

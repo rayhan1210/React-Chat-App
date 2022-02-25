@@ -1,48 +1,56 @@
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
-import { useContext, useState } from 'react';
-import { AuthenticationContext } from './AuthenticationContext';
+import { useContext, useRef } from 'react';
+import { AuthContext } from '../contextapi/Auth_Context';
 import { useNavigate } from 'react-router-dom';
 import "./login.css";
 import Message from './Message';
-
-function Login(props){
+import { LoginApiCall } from '../loginApiCall';
+function Login(){
     // using useContext hook, destructing and getting the specific value you need. useContext returns a value and useState returns an array
-    // const { setActivity } = useContext(AuthenticationContext);
-    const [name, setValue ] = useState('');
-    let navigate = useNavigate();
+    // can use useState hook but
+    //  what will happen is when user writes anything the input everytime it happes, it will render the Login componenr
+    // so aim should be to prevent re-render as much as possible
+    const email = useRef();
+    const password = useRef();
+    const navigate = useNavigate();
+    const { user, error, isFetch, dispatch } = useContext(AuthContext); //destructuring
     const handleSubmit = (e) => {
-        e.preventDefault();
-        navigate("/message");
-    }
+        e.preventDefault(); //prevents page from refreshing on click/submitting
+        LoginApiCall({email: email.current.value, password: password.current.value}, dispatch);
+        // console.log(LoginApiCall({email: email.current.value, password: password.current.value}, dispatchInfo));
+        
+    };
     return(
         <>
            <Container >
                 <Row >
                     <Col></Col>
                     <Col className='d-flex mt-5'>
-                        {/* <div id="formBG" className='align-middle p-5 m-5 rounded border border-3 border-dark'> */}
-                            <Form  className='align-middle p-5 m-5 rounded border border-4 border-dark formBG' 
-                            onSubmit={handleSubmit} >
+                            <Form  className='align-middle p-5 m-5 rounded border border-4 border-dark formBG' onSubmit={handleSubmit} >
                                 <Form.Group  className='mb-3 w-auto formBG'>
                                     <Form.Label  className='mx-2 w-auto fw-bold formBG'>Email Adress:</Form.Label>
-                                    <Form.Control className='mx-2' type="text" placeholder='Enter email' onChange={(e)=>{
-                                        setValue(e.target.value)
-                                    }}/>
+                                    <Form.Control className='mx-2' 
+                                        type="text" required 
+                                        placeholder='Enter email' 
+                                        ref={email}
+                                    />
                                 </Form.Group>
                                 <Form.Group  className='mb-3 w-auto formBG'>
                                     <Form.Label  className='mx-2 w-auto fw-bold formBG'>Password</Form.Label>
-                                    <Form.Control className='mx-2' type="password" placeholder="Enter Password" autoComplete='on'/>
+                                    <Form.Control className='mx-2' 
+                                        type="password" required 
+                                        placeholder="Enter Password" 
+                                        ref={password} 
+                                        autoComplete='on'
+                                    />
                                 </Form.Group>
+                                { error && <h1 className="validator">Invalid Email Adress/Passowrd</h1> }
                                 <Form.Group  className='mb-3 w-auto formBG'>
-                                    <Button type="submit" className='mt-1 mx-2' variant="dark" onSubmit={()=>{<Message/>}}>Login</Button>
-
-                                    <Button  className='bg-dark link-info w-auto' onClick={() => {
-                                        navigate("/signup");
-                                            // setTimeout(()=>{
-                                            //     setActivity("signup");
-                                            // }, 100);
-                                        }
-                                    }>Register for an account?</Button>
+                                    <Button type="submit" className='mt-1 mx-2' variant="dark" >Login</Button>
+                                    <Button  className='bg-dark link-info w-auto' 
+                                        onClick={() => {navigate("/signup")}}
+                                    >
+                                        Register for an account?</Button>
                                 </Form.Group>
                             
                             </Form>

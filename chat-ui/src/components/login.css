@@ -2,3 +2,9 @@
     background-color: rgb(202, 147, 133);
     width: 500px;
 }
+.validator{
+    background-color: rgb(202, 147, 133);
+    font-size: 20px;
+    color: rgb(255, 0, 0);
+    text-align: center;
+}

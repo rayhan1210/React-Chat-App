@@ -6,26 +6,29 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
+  Navigate,
 } from "react-router-dom";
-import { AuthenticationContext } from "./components/AuthenticationContext";
-import { useMemo, useState } from 'react';
+import { AuthContext } from "./contextapi/Auth_Context";
+import { useContext } from 'react';
 import Message from './components/Message';
 // import { Auth } from './components/Auth';
 
 
-function App(props) {
-  // //destructuing, useState hook return destructuring
-  // const [active, setActive] = useState('login');
-  // const [authActivity, setActivity] = useState('login');
-  // const value = useMemo(() => ({authActivity, setActivity}), [authActivity, setActivity]); //save info
+function App() {
+  const { user } = useContext(AuthContext);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/message" element={<Message/>} />
+        {/* <Route path="/">
+          {user ? <Message/> : <Login/>}
+        </Route>
+        <Route path="/signup">
+          { user ? <Navigate to="/" /> : <Signup/>}
+        </Route> */}
+        <Route path="/" element ={ user ? <Navigate to="/message" /> : <Login/> } />
+        <Route path="/signup" element={ user ? <Navigate to="/" /> : <Signup/> } />
+        <Route path="/message" element={user ? <Message/> : <Login/> } />
       </Routes>
       {/* <AuthenticationContext.Provider value={value} >
         <Routes>
