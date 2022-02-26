@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
+const cors = require("cors");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const convosRoute = require("./routes/convos");
@@ -17,6 +18,7 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true}, ()=>{
 }); //connecting mongoDB
 
 //middleware implementation
+app.use(cors());
 app.use(express.json()) //express.json is abody parser when making a post request
 app.use(helmet());
 app.use(morgan("common")); //"commo" -> ?

@@ -16,7 +16,7 @@ import Message from './components/Message';
  
 function App() {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   return (
     <Router>
       <Routes>

@@ -45,14 +45,19 @@ router.delete("/:id", async (req, res) => {
     }
 });
 //get user "/:id" cause you wanna find user by the id
-router.get("/:id", async (req, res) => {
+router.get("/", async (req, res) => {
+    const userId = req.query.userId;
+    const username = req.query.username;
     try{
         // const user = await User.findById(req.params.id);
         // const {password, updatedAt, ..other} = user._doc 
         // _doc carries the whole object and by sending other you get everything except password and updated at
         //only get userid and username attributes
-        const user = await User.find({"userId": req.params.id}).select('username').select('email'); 
-        
+        // const user = await User.find({"userId": req.params.id}).select('username').select('email'); 
+        const user = userId
+        ? await User.findById(userId)
+        : await User.findOne({username: username});
+        const { password, updateAt, ...other } = user._doc;
         res.status(200).json(user);
     }catch(err){
         res.status(500).json(err);

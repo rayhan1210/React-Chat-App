@@ -1,20 +1,36 @@
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
-import "./Message.css";
 import { IoMdSend } from "react-icons/io";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contextapi/Auth_Context";
+import Convo from "./Convos";
+import "./Message.css";
+import axios from "axios";
 
 function Message() {
     let navigate = useNavigate();
     
     const{ user, dispatch } = useContext(AuthContext);
     //later user will be used to show who is logged in currently
-    
+
+    const [ convos, setConvos ] = useState([]);
+
+    useEffect(()=>{
+        const getUserConvos = async () => {
+            try{
+                const res = await axios.get("/convos/"+user._id);
+                setConvos(res.data);
+            }catch(err){
+                console.log(err);
+            }
+        }
+        getUserConvos();
+    }, [user._id]);
     
     return (
         <>
-        {<div>{user.name}</div> }
+        {/* {console.log(convos)} */}
+        {/* <div>{console.log(user._id)}</div> */}
         <Container className="messenger-box">
             {/* <div>{user.username}</div> */}
             <Button className="logOutbutton" 
@@ -31,7 +47,16 @@ function Message() {
                     <Col className='messenger d-flex mt-5'>
                         <input placeholder="Search user" className="searchUser"/>
                         <div className="convoList">
-                            <div></div>
+                            {   
+                            // {/* // is instead {} use () it returns it without having to type return */}
+                                convos.map((c) => (
+                                    <div key={c._id} onClick={()=>(console.log("clicked"))}>
+                                        <Convo key={c._id} convo={c} currentUser={user}/>
+                                    </div>
+                                ))
+                                
+                            }
+                            
                         </div> 
                         <div className="convo">
                             <div>Hello there!</div>
