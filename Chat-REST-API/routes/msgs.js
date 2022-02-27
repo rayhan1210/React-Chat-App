@@ -13,14 +13,14 @@ router.post("/", async (req, res) => {
 
         // console.log(newMsg);
         // !newMsg && res.status(404).json("cant find convo");
-        await newMsg.save();
+        await newMsg.save(); 
         res.status(200).json(newMsg);
     }catch(err){
         res.status(500).json(err);
     }
 
 });
-// get a message from receiver.
+// get messages. 
 
 router.get("/:convoId", async (req, res) => {
     try{

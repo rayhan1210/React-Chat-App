@@ -11,7 +11,7 @@ export default function Convo({convo, currentUser}){
             try{
                 const res = await axios("/users?userId="+userFriendsId);
                 setUser(res.data);
-                console.log(res);
+                // console.log(res);
             }catch(err){
                 console.log(err);
             }

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-//what each user should have
+//what each user should have 
 const MsgSchema = new mongoose.Schema({
         convoId: { // which conversation are you in, hence you need conversation id
             type: String

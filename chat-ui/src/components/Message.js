@@ -1,7 +1,7 @@
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { IoMdSend } from "react-icons/io";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../contextapi/Auth_Context";
 import Convo from "./Convos";
 import "./Message.css";
@@ -14,6 +14,9 @@ function Message() {
     //later user will be used to show who is logged in currently
 
     const [ convos, setConvos ] = useState([]);
+    const [ currentchat, setCurrentChat ] = useState(null);
+    const [ msgs, setMsgs ] = useState([]);
+    const [ newMsg, setNewMsg ] = useState("");
 
     useEffect(()=>{
         const getUserConvos = async () => {
@@ -27,10 +30,40 @@ function Message() {
         getUserConvos();
     }, [user._id]);
     
+    useEffect(() => {
+        const getUserMsgs = async () => {
+            try{
+                const res = await axios.get("/msgs/"+currentchat?._id);
+                setMsgs(res.data);
+            }catch(err){
+                console.log(err);
+            }
+        }
+        getUserMsgs();
+    },[ currentchat ]);
+
+    // const msgInput = useRef();
+    // convoId, senderId, text
+    const handleSubmittingMsg = async (e) => {
+        e.preventDefault();
+        const msg = {
+            convoId: currentchat._id,
+            senderId: user._id,
+            text: newMsg
+        }
+        try{
+            const res = await axios.post("/msgs", msg);
+            setMsgs([...msgs, res.data]); //add the newMSg posted to msgs useState which consst of array using
+            // "...msgs" => which means it grabs all of the values that already exist in msgs
+            setNewMsg(""); //wanna reset the newMsg values after sending it so it doesnt overlay
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+
     return (
         <>
-        {/* {console.log(convos)} */}
-        {/* <div>{console.log(user._id)}</div> */}
         <Container className="messenger-box">
             {/* <div>{user.username}</div> */}
             <Button className="logOutbutton" 
@@ -50,7 +83,7 @@ function Message() {
                             {   
                             // {/* // is instead {} use () it returns it without having to type return */}
                                 convos.map((c) => (
-                                    <div key={c._id} onClick={()=>(console.log("clicked"))}>
+                                    <div key={c._id} onClick={(e) => {setCurrentChat(c)}}>
                                         <Convo key={c._id} convo={c} currentUser={user}/>
                                     </div>
                                 ))
@@ -59,13 +92,16 @@ function Message() {
                             
                         </div> 
                         <div className="convo">
-                            <div>Hello there!</div>
-                            <div>Hello there!</div>
-                            {/* should be either form or input with button to send message => form as you are sending/posting message */}
+                            {msgs.map((m) => (
+                                <div key={m._id}>{m.text}</div>
+                            ))}
                         </div>
                         <div id="stackBox">
-                            <textarea className="sendMsgInput" type="text"></textarea>
-                            <button className="sendBtn"><IoMdSend className="icon"/></button>
+                            <textarea className="sendMsgInput" type="text" 
+                            onChange={(e)=>setNewMsg(e.target.value)}
+                            value={newMsg}
+                            ></textarea>
+                            <button className="sendBtn" onClick={handleSubmittingMsg}><IoMdSend className="icon"/></button>
                         </div>
                     </Col>
                 </Row> 
