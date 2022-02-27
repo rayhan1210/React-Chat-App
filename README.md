@@ -1,5 +1,7 @@
 # React-Chat-App
 
+Simple real time chat application implemented using react.js, nodejs, expressjs and MongoDB
+
 ### Main Functionlaity of the App:
 - Allow users to login/register 
 - Allow users to send real time message between each other
