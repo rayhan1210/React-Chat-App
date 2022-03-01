@@ -9,10 +9,13 @@
     width: 500px;
     /* height: 500px; */
     border-radius: 15px;
+    margin-top: -15px;
     /* background-color: aqua; */
 
 }
-
+.seperateConvo{
+    border-radius: 5px;
+}
 .searchUser{
     background-color: rgb(17, 53, 53);
     border-radius: 5px;
@@ -32,16 +35,25 @@
     width: 188px;
 }
 .convo{
-    /* position: relative; */
-    /* overflow: scroll; */
     overflow-y: auto;
-    overflow-x: auto;
     background-color: rgb(31, 51, 51);
     margin: 12px 0 10px 6px;
     border-radius: 5px 5px 0 0; /*right-top left-top right-bottom left-bottom */
     width: 280px;
     height: 428px;
 }
+.sentMsg{
+    background-color: rgb(71, 71, 71);
+    text-align: end;
+}
+.receivedMsg{
+    background-color: red;
+    text-align: start;
+}
+.profile:hover{
+    background-color: blueviolet;
+}
+
 #stackBox{
     /* margin: 40px 0 0 5px; */
     width: 280px;
@@ -49,9 +61,8 @@
     position: absolute;
     bottom: 0;
     height: 45px;
-    /* left: 10; */
     margin-left: 193px;
-    margin-bottom: 45px;
+    margin-bottom: 35px;
     border-radius: 5px;
 }
 .sendMsgInput{
@@ -59,7 +70,7 @@
     /* margin: 440px 0 0 5px;  */
     width: 230px;
     height: 45px;
-    background-color: rgb(230, 175, 25);
+    background-color: rgb(219, 218, 218);
     border-radius: 0 0 0 5px;
     border-style: solid;
     border-color: rgb(27, 110, 85);
@@ -72,13 +83,7 @@
     background-color: rgb(17, 53, 53);
     border-color: rgb(27, 110, 85);
     border-radius: 0 0 5px 0;
-    /* border-end-end-radius: 5px;
-    border-top-right-radius: 5px;
-    border-radius: 50px 1px 10px 40px; */
-    
     border-width: thin;
-    /* margin-top: 20px; */
-    /* padding-top: 25px; */
     width: 50px;
     margin-top: 0px;
     height: 45px;

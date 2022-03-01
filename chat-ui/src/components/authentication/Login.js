@@ -1,10 +1,10 @@
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import { useContext, useRef } from 'react';
-import { AuthContext } from '../contextapi/Auth_Context';
+import { AuthContext } from '../../contextapi/Auth_Context';
 import { useNavigate } from 'react-router-dom';
 import "./login.css";
 // import Message from './Message';
-import { LoginApiCall } from '../loginApiCall';
+import { LoginApiCall } from '../../loginApiCall';
 function Login(){
     // using useContext hook, destructing and getting the specific value you need. useContext returns a value and useState returns an array
     // can use useState hook but

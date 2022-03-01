@@ -1,0 +1,10 @@
+.formBG{
+    background-color: rgb(231, 166, 166);
+    width: 500px; 
+}
+.validator{
+    background-color: rgb(221, 211, 208);
+    font-size: 20px;
+    color: rgb(255, 0, 0);
+    text-align: center;
+}

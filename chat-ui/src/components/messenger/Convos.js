@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "./convo.css";
 
 export default function Convo({convo, currentUser}){
     const [user, setUser ] = useState();
