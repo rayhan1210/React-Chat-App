@@ -1,4 +1,17 @@
 *{
     margin: 0;
-    background-color: rgb(10, 13, 22);
+    background-color: rgb(24, 33, 58);
+}
+/* html,
+body{
+    height: 100%;
+}
+
+html{
+    background: linear-gradient(to right, #57c1eb 0%, #246fa8);
+}
+
+body {
+    display: grid;
+    place-items: center center; */
 }

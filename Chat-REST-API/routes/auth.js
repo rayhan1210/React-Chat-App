@@ -6,11 +6,11 @@ const bcrypt = require("bcrypt"); //async funtion
 // router.get("/", (req, res)=>{
 //     res.send("in auth page");
 // });
-
+ 
 
 //register user
 router.post("/register", async (req, res)=>{ //async function
-    
+    // res.send("OK")
     try{
         // generate new password
         const salt = await bcrypt.genSalt(10); // random string that makes the hash unpredictable

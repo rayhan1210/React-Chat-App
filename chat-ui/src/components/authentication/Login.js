@@ -2,9 +2,8 @@ import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import { useContext, useRef } from 'react';
 import { AuthContext } from '../../contextapi/Auth_Context';
 import { useNavigate } from 'react-router-dom';
-import "./login.css";
-// import Message from './Message';
 import { LoginApiCall } from '../../loginApiCall';
+import "./login.css";
 function Login(){
     // using useContext hook, destructing and getting the specific value you need. useContext returns a value and useState returns an array
     // can use useState hook but
@@ -25,6 +24,7 @@ function Login(){
                     <Col></Col>
                     <Col className='d-flex mt-5'>
                             <Form  className='align-middle p-5 m-5 rounded border border-4 border-dark formBG' onSubmit={handleSubmit} >
+                                <p className="loginTitle">Login</p>
                                 <Form.Group  className='mb-3 w-auto formBG'>
                                     <Form.Label  className='mx-2 w-auto fw-bold formBG'>Email Adress:</Form.Label>
                                     <Form.Control className='mx-2' 

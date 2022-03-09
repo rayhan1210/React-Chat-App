@@ -14,7 +14,7 @@ const app = express(); // create the application
 dotenv.config(); //using dotenv
 //process.env.MONGO_URL => calling the secret key from .env file
 mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true}, ()=>{
-    console.log("checing mongoDB connection");
+    console.log(mongoose.connection.readyState);
 }); //connecting mongoDB
 
 //middleware implementation
@@ -23,7 +23,7 @@ app.use(express.json()) //express.json is abody parser when making a post reques
 app.use(helmet());
 app.use(morgan("common")); //"commo" -> ?
 
-//router for different functionality
+//router for different functionality 
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/convos", convosRoute);

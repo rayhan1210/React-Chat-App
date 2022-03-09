@@ -1,22 +1,49 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { IoMdSend } from "react-icons/io";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../contextapi/Auth_Context"
-// "../contextapi/Auth_Context";
+import { io } from "socket.io-client";
 import Convo from "./Convos";
 import "./message.css";
 import axios from "axios";
 import Chat from "./Chat";
 
-function Message() {
+function Message() { 
     const{ user } = useContext(AuthContext);
     //later user will be used to show who is logged in currently
-
-    const [ convos, setConvos ] = useState([]);
+    const [ convos, setConvos ] = useState([]); //gets the list of conversations
     const [ currentchat, setCurrentChat ] = useState(null);
     const [ msgs, setMsgs ] = useState([]);
     const [ newMsg, setNewMsg ] = useState("");
- 
+    const [ arrivedMsg, setArrivedMsg ] = useState(null);
+    const socket = useRef();
+
+    useEffect(() => {
+        socket.current = io("ws://localhost:8900");
+        socket.current.on("getMessage", userData => {
+            setArrivedMsg({
+                senderId: userData.senderId,
+                text: userData.text,
+                createdAt: Date.now(),
+            });
+        });
+    }, []);
+
+    useEffect(() => {
+        // console.log("arrivedMsg.sender: " + arrivedMsg);
+        arrivedMsg && 
+            currentchat?.members.includes(arrivedMsg.senderId) && 
+            setMsgs((prev) => [...prev, arrivedMsg]);
+    }, [ arrivedMsg, currentchat ]);
+
+
+    useEffect(() => {
+        socket.current.emit("addUser", user._id);
+        socket.current.on("getUsers", users => {
+            console.log(users); //fro debugging
+        })
+    }, [user])
+
     useEffect(()=>{
         const getUserConvos = async () => {
             try{
@@ -49,7 +76,16 @@ function Message() {
             convoId: currentchat._id,
             senderId: user._id,
             text: newMsg
-        }
+        };
+
+        const receiver_Id = currentchat.members.find(member => member !== user._id);
+
+        socket.current.emit("sendMessage", {
+            senderId: user._id,
+            receiverId: receiver_Id,
+            text: newMsg,
+        });
+
         try{
             const res = await axios.post("/msgs", msg);
             setMsgs([...msgs, res.data]); //add the newMSg posted to msgs useState which consst of array using
@@ -60,40 +96,46 @@ function Message() {
         }
     }
 
-
     return (
         <>
-        <Container className="messenger-box">
+        <Container className="messenger-box2">
             <Row>
                 <Col className='messenger d-flex mt-5'>
-                    <input placeholder="Search user" className="searchUser"/>
-                    <div className="convoList">
-                        {   
-                        // {/* // is instead {} use () it returns it without having to type return */}
-                            convos.map((c) => (
-                                <div className="seperateConvo" key={c._id} onClick={(e) => {setCurrentChat(c)}}>
-                                    <Convo key={c._id} convo={c} currentUser={user}/>
-                                </div>
-                            ))
+                    <div className="convo-sideBar">
+                        <input placeholder="Search user" className="searchUser"/>
+                        <div>
+                            {   
+                            // {/* // is instead {} use () it returns it without having to type return */}
+                                convos.map((c) => (
+                                    <div className="seperateConvo" key={c._id} onClick={(e) => {setCurrentChat(c)}}>
+                                        <Convo key={c._id} convo={c} currentUser={user}/>
+                                    </div>
+                                ))
+                                
+                            }
                             
-                        }
-                        
-                    </div> 
-                    <div className="convo">
-                        {msgs.map((m) => (
-                            <Chat key={m._id} message={m} own={m.senderId===user._id} />
-                        ))}        
+                        </div> 
                     </div>
-                    <div id="stackBox">
-                        <textarea className="sendMsgInput" type="text" 
-                            onChange={(e)=>setNewMsg(e.target.value)}
-                            value={newMsg}
-                        ></textarea>
-                        <button className="sendBtn" onClick={handleSubmittingMsg}><IoMdSend className="icon"/></button>
+                    <div className="convo-box">
+                        <div className="convo">
+                            {msgs.map((m) => (
+                                <Chat key={m._id} message={m} own={m.senderId===user._id} />
+                            ))}        
+                        </div>
+                        <div class="input-group mb-3 msgButton">
+                            <textarea type="text" class="form-control sendMsg" placeholder="Send message" aria-label="Send message" aria-describedby="basic-addon2"
+                                onChange={(e)=>{setNewMsg(e.target.value)}}
+                                //set new msg when user types
+                                value={newMsg}
+                            />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" onClick={handleSubmittingMsg}>Button</button>
+                            </div>
+                        </div>
                     </div>
                 </Col>
             </Row> 
-        </Container>
+        </Container> 
         </>
     );
 }

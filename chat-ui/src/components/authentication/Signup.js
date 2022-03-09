@@ -1,7 +1,7 @@
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./signup.css";
+import "./login.css";
 import axios from 'axios';
 
 function Signup(props){
@@ -35,7 +35,8 @@ function Signup(props){
                 <Row >
                     <Col></Col>
                     <Col className='d-flex mt-5'>
-                            <Form  className='align-middle p-5 m-5 rounded border border-4 border-dark formBG' onSubmit={handleSubmit}>
+                            <Form  className='align-middle p-4 rounded border border-4 border-dark formBG' onSubmit={handleSubmit}>
+                                <p className='signupTitle'>Sign Up</p>
                                 <Form.Group  className='mb-3 w-auto formBG'>
                                     <Form.Label  className='mx-2 w-auto fw-bold formBG'>Full Name:</Form.Label>
                                     <Form.Control className='mx-2' ref={username} type="text" placeholder='Enter Full Name'/>

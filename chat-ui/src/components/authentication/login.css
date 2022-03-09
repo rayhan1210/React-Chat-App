@@ -1,5 +1,5 @@
 .formBG{
-    background-color: rgb(231, 166, 166);
+    background-color: rgb(245, 238, 238);
     width: 500px; 
 }
 .validator{
@@ -7,4 +7,19 @@
     font-size: 20px;
     color: rgb(255, 0, 0);
     text-align: center;
+}
+.loginTitle{
+    background-color: rgb(245, 238, 238);
+    text-align: center;
+    font-weight: 700;
+    font-family:cursive;
+    font-size: 30px;
+
+}
+.signupTitle{
+    background-color: rgb(245, 238, 238);
+    text-align: center;
+    font-weight: 700;
+    font-family:cursive;
+    font-size: 20px;
 }

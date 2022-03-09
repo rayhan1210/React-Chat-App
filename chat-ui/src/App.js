@@ -21,7 +21,7 @@ function App() {
     <>
     {user ? 
       <Container className="messenger-box mt-3">
-          <div className="d-flex justify-content-end align-items-end">
+          <div className="d-flex justify-content-end align-items-end dropDownMenu">
             <DropdownButton title={user.username}>
               <Dropdown.Item as="button">Profile</Dropdown.Item>
               <Dropdown.Item as="button">Settings</Dropdown.Item>
