@@ -1,10 +1,17 @@
 .convoID{
+    display: inline-block;
+    width: 193px;
     background-color: rgb(255, 255, 255);
-   padding: 5px 0 5px 10px;
-   font-weight: bold;
 }
 
 .convoID:hover{
-    background-color: rgb(96, 96, 99);
+    background-color: rgb(22, 120, 206);
     cursor: pointer;
+}
+.displayAsText{
+    background-color: rgb(243, 227, 7);
+    margin-left: 2px;
+    padding: 0 5px 0 5px;
+    border-radius: 2px;
+    
 }

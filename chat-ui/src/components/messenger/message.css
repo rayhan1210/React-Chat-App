@@ -1,8 +1,9 @@
 .messenger-box2{
+    /* margin-left: 300px; */
     width: 750px;
-    display: flex;
-    border-radius: 15px;
-    margin-top: -15px;
+    /* display: flex; */
+    /* border-radius: 15px; */
+    /* margin-top: -15px; */
     /* background-color: aqua; */
 
 }
@@ -13,11 +14,39 @@
     border-color: rgb(0, 47, 85);
     border-style: solid;
 }
+.messenger-extend{
+    background-color: rgb(0, 0, 0);
+    height: 500px;
+    border-radius: 12px;
+    border-color: rgb(0, 47, 85);
+    border-style: solid;
+}
 .seperateConvo{
     border-radius: 5px;
+    /* background-color: aliceblue; */
 }
+.seperateConvo-extend{
+    border-radius: 5px;
+    width: 350px;
+    background-color: aquamarine;
+}
+.seperateConvo-extend:hover{
+    border-radius: 5px;
+    width: 350px;
+    background-color: black;
+}
+/* .seperateConvo:hover{
+    background-color: rgb(22, 120, 206);
+} */
 .convo-sideBar{
     background-color: rgb(25, 52, 65);
+    border-radius: 5px;
+    margin-top: 12px;
+    height: 477px;
+}
+.convo-sideBar-extend{
+    background-color: rgb(25, 52, 65);
+    width: 350px;
     border-radius: 5px;
     margin-top: 12px;
     height: 477px;
@@ -27,27 +56,36 @@
     border-radius: 5px;
     border-style: solid;
     border-width: thin;
-    /* margin-top: 12px; */
     border-color: rgb(75, 75, 75);
     height: 30px;
     padding: 5px;
-
 }
-/* .convoList{
-    position:absolute;
-    margin: 45px 0 15px 0;
-    background-color: rgb(25, 52, 65);
+.searchUser-extend{
+    background-color: rgb(129, 129, 129);
+    width: 350px;
     border-radius: 5px;
-    height: 444px;
-    width: 188px;
-} */
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(75, 75, 75);
+    height: 30px;
+    padding: 5px;
+}
 .convo{
     overflow-y: auto;
     background-color: rgb(31, 51, 51);
-    margin: 12px 0 10px 6px;
+    margin: 0 0 2px 6px;
     border-radius: 5px 5px 0 0; /*right-top left-top right-bottom left-bottom */
     width: 530px;
-    height: 428px;
+    height: 390px;
+}
+.NoChatChoosen{
+    background-color: rgb(31, 51, 51);
+    margin-top: 12px;
+    /* margin-right: 5px; */
+    margin-left: 10px;
+    border-radius: 5px; /*right-top left-top right-bottom left-bottom */
+    width: 530px;
+    height: 476px;
 }
 .sentMsg{
     background-color: rgb(71, 71, 71);
@@ -96,10 +134,14 @@
     margin-bottom: 5px;
     align-content:flex-start;
 } */
-.convo-box{
+.show-convo-box{
     background-color: black;
     width: 540px;
     /* margin-right: 30px; */
+}
+.hide-convo-box{
+    display: none;
+    /* visibility: hidden; */
 }
 .msgButton{
     width: 530px;
@@ -115,6 +157,18 @@
     display: flexbox;
     margin: 20px 0 -30px 410px;
 }
+.msgHeader{
+    margin-top: 12px;
+    border-radius: 2px;
+    margin: 12px 5px 0 5px;
+    /* height: 36px; */
+    /* padding-bottom: 5px; */
+}
+.goBackBtn{
+    display: none;
+    visibility: hidden;
+}
+
 .searchUser:focus{
     outline: none;
     border-color: rgb(43, 134, 177);
@@ -136,18 +190,27 @@
     color: rgb(17, 17, 17);
     opacity: 1;
 }
-
-/* @media screen and (max-width: 768px) {
-    .stackBox{width: 18.53%;}
-    .convo{width: 70%;}
-        
+/* @media only screen and (min-width: 1024px) {
+    .convo-sideBar{display:contents;}
 }
+@media only screen and (min-width: 768px) {
+    .messenger{margin-left: -15px;}
+}
+@media only screen and (min-width: 620px) {
+    For mobile phones:
+   .convo-sideBar{display: none;}
+   .messenger-box2{width: 450px;}
+   .goBackBtn{
+        display: inline;
+        visibility: visible;
+        border-radius: 10px;
+        margin: 5px;
+        padding-bottom: 5px;
+    }
 
-@media screen and (max-width: 600px) {
-    .stackBox{width: 18.53%;}
-    .convo{width: 70%;}
-        
+}
+@media only screen and (min-width: 425px) {
+    .convo-box{
+        width: 300px;
+    }
 } */
-
-
-

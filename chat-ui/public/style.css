@@ -1,7 +1,9 @@
 *{
     margin: 0;
     background-color: rgb(24, 33, 58);
+    height:auto;;
 }
+
 /* html,
 body{
     height: 100%;

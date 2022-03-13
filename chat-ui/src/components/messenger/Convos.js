@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./convo.css";
 
-export default function Convo({convo, currentUser}){
+export default function Convo({convo, currentUser, list}){
     const [user, setUser ] = useState();
 
     useEffect(() => {
@@ -22,6 +22,6 @@ export default function Convo({convo, currentUser}){
 
     return (
         // design it
-        <div className="convoID">{user?.username}</div>
+        <b className={list ? "convoID": "displayAsText"}>{user?.username}</b>
     );
 }
