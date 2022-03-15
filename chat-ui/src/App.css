@@ -1,11 +1,8 @@
-.messenger-box{
-    width: 500px;
+.dropdown-box{
+    /* width: 600px; */
     /* height: 500px; */
-    border-radius: 15px;
     /* background-color: aqua; */
+    /* margin-left: 210px; */ 
    
 
-}
-.dropDownMenu{
-    margin-right: 170px;
 }

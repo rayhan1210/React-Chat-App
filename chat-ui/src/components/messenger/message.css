@@ -1,216 +1,112 @@
 .messenger-box2{
-    /* margin-left: 300px; */
-    width: 750px;
-    /* display: flex; */
-    /* border-radius: 15px; */
-    /* margin-top: -15px; */
-    /* background-color: aqua; */
-
+    min-height: 100%;
+    /* background-color: bisque; */
+}
+.messenger-box2-decrese{
+    width: fit-content;
+    height: fit-content;
+}
+.messenger-box2-extend{
+    width: fit-content;
+    height: fit-content
 }
 .messenger{
-    background-color: rgb(0, 0, 0);
-    height: 500px;
-    border-radius: 12px;
-    border-color: rgb(0, 47, 85);
-    border-style: solid;
+    /* background-color: blue; */
+    /* height: 500px; */
+    /* border-radius: 10px; */
 }
-.messenger-extend{
-    background-color: rgb(0, 0, 0);
-    height: 500px;
-    border-radius: 12px;
-    border-color: rgb(0, 47, 85);
-    border-style: solid;
-}
-.seperateConvo{
-    border-radius: 5px;
-    /* background-color: aliceblue; */
-}
-.seperateConvo-extend{
-    border-radius: 5px;
-    width: 350px;
-    background-color: aquamarine;
-}
-.seperateConvo-extend:hover{
-    border-radius: 5px;
-    width: 350px;
-    background-color: black;
-}
-/* .seperateConvo:hover{
-    background-color: rgb(22, 120, 206);
-} */
+
 .convo-sideBar{
-    background-color: rgb(25, 52, 65);
+    background-color: blueviolet;
+    height: 500px;
     border-radius: 5px;
-    margin-top: 12px;
-    height: 477px;
+    padding: 5px;
+    /* margin: 2px; */
 }
 .convo-sideBar-extend{
-    background-color: rgb(25, 52, 65);
-    width: 350px;
-    border-radius: 5px;
-    margin-top: 12px;
-    height: 477px;
+    width: 300px;
+    height: 500px;
+    background-color: blueviolet;
+    padding: 5px;
+    border-radius: 10px;
 }
 .searchUser{
-    background-color: rgb(129, 129, 129);
+    width: 193px;
+    background-color: antiquewhite;
+    /* border-radius: 2px; */
+    border-color: brown;
+    border: 2px solid rgb(22, 106, 216);
     border-radius: 5px;
-    border-style: solid;
-    border-width: thin;
-    border-color: rgb(75, 75, 75);
-    height: 30px;
-    padding: 5px;
 }
 .searchUser-extend{
-    background-color: rgb(129, 129, 129);
-    width: 350px;
+    width: 290px;
+    background-color: rgb(108, 195, 245);
     border-radius: 5px;
-    border-style: solid;
-    border-width: thin;
-    border-color: rgb(75, 75, 75);
-    height: 30px;
-    padding: 5px;
+    border-color: brown;
+    border: 2px solid rgb(22, 106, 216);
+}
+.seperateConvo-extend{
+    /* width: auto; */
+    background-color: white;
+    border-radius: 2px;
+}
+.seperate-convo{
+    background-color: rgb(255, 255, 255);
+    border-radius: 2px;
+    margin-top: 2px;
+}
+.set-conv{
+    background-color: blueviolet;
+}
+.convo-sideBar-hide{
+    display: none;
+}
+.msg-box{
+    height: 500px;
+    width: 400px;
+    border-radius: 10px;
+    margin-left: 2px;
+}
+.msgHeader{
+    border-radius: 5px 5px 0 0;
+}
+.goBackBtn{
+    border-radius: 5px 5px 5px 5px;
+    margin: 2px;
+}
+.convo-decrease{
+    overflow-y: auto;
+    height: 81%;
+    background-color: aqua;
+    /*width: 400px;
+    height: 500px;
+    border-radius: 5px; */
+    
 }
 .convo{
     overflow-y: auto;
-    background-color: rgb(31, 51, 51);
-    margin: 0 0 2px 6px;
-    border-radius: 5px 5px 0 0; /*right-top left-top right-bottom left-bottom */
-    width: 530px;
-    height: 390px;
-}
-.NoChatChoosen{
-    background-color: rgb(31, 51, 51);
-    margin-top: 12px;
-    /* margin-right: 5px; */
-    margin-left: 10px;
-    border-radius: 5px; /*right-top left-top right-bottom left-bottom */
-    width: 530px;
-    height: 476px;
-}
-.sentMsg{
-    background-color: rgb(71, 71, 71);
-    text-align: end;
-}
-.receivedMsg{
-    background-color: red;
-    text-align: start;
-}
-.profile:hover{
-    background-color: blueviolet;
-}
-/* .stackBox{
-    position: fixed;
-    width: 450px;
-    height: 428px;
-    margin-top: 460px;
-    height: 35px;
-    margin-right: 20px;
-    background-color: #e61515;
-} */
-/* .sendMsgInput{
-    width: 480px;
-    height: 45px;
-    background-color: rgb(219, 218, 218);
-    border-radius: 0 0 0 5px;
-    border-style: solid;
-    border-color: rgb(27, 110, 85);
-    border-width: thin;
-} */
-/* .sendBtn{
-    position: absolute;
-    margin-top: 50px;
-    border-style: solid;
-    background-color: rgb(17, 53, 53);
-    border-color: rgb(27, 110, 85);
-    border-radius: 0 0 5px 0;
-    border-width: thin;
-    width: 50px;
-    margin-top: 0px;
-    height: 45px;
-}
-
-.icon{
-    background-color: rgb(17, 53, 53);
-    margin-bottom: 5px;
-    align-content:flex-start;
-} */
-.show-convo-box{
-    background-color: black;
-    width: 540px;
-    /* margin-right: 30px; */
-}
-.hide-convo-box{
-    display: none;
-    /* visibility: hidden; */
+    height: 85.55%;
+    background-color: aqua;
 }
 .msgButton{
-    width: 530px;
-    margin-left: 6px;
-    height: 20px;
+    height: 40px;
 }
 .sendMsg{
-    height: 20px;
-    resize: none;
-    /* margin-left: 8px; */
+    height: 38px;
+    border-bottom-left-radius: 10px;
+    width: 89.66%;
+    border: 1px solid rgb(78, 76, 76);
 }
-.logOutbutton{
-    display: flexbox;
-    margin: 20px 0 -30px 410px;
+.send-btn{
+    border-bottom-right-radius: 10px;
+    width: 42px;
+    height: 38px;
+    border: 1px solid rgb(78, 76, 76);
 }
-.msgHeader{
-    margin-top: 12px;
-    border-radius: 2px;
-    margin: 12px 5px 0 5px;
-    /* height: 36px; */
-    /* padding-bottom: 5px; */
+.NoChatChoosen{
+    background-color: aqua;
+    width: 400px;
+    height: 500px;
+    border-radius: 5px;
+    margin-left: 2px;
 }
-.goBackBtn{
-    display: none;
-    visibility: hidden;
-}
-
-.searchUser:focus{
-    outline: none;
-    border-color: rgb(43, 134, 177);
-}
-.sendMsgInput:focus{
-    outline: none;
-    border-color: rgb(43, 134, 177);
-}
-.sendBtn:hover{
-   border-color:rgb(43, 134, 177);
-}
-.sendBtn:active{
-    background-color: rgb(12, 83, 116);
-}
-.icon:active{
-    background-color: rgb(12, 83, 116);
-}
-::placeholder{
-    color: rgb(17, 17, 17);
-    opacity: 1;
-}
-/* @media only screen and (min-width: 1024px) {
-    .convo-sideBar{display:contents;}
-}
-@media only screen and (min-width: 768px) {
-    .messenger{margin-left: -15px;}
-}
-@media only screen and (min-width: 620px) {
-    For mobile phones:
-   .convo-sideBar{display: none;}
-   .messenger-box2{width: 450px;}
-   .goBackBtn{
-        display: inline;
-        visibility: visible;
-        border-radius: 10px;
-        margin: 5px;
-        padding-bottom: 5px;
-    }
-
-}
-@media only screen and (min-width: 425px) {
-    .convo-box{
-        width: 300px;
-    }
-} */

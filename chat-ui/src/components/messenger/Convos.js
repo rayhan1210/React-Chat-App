@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./convo.css";
 
-export default function Convo({convo, currentUser, list}){
+export default function Convo({convo, currentUser, list, barExtender}){
     const [user, setUser ] = useState();
 
     useEffect(() => {
@@ -19,9 +19,13 @@ export default function Convo({convo, currentUser, list}){
         };
         getUser();
     }, [currentUser, convo]);
-
     return (
         // design it
-        <b className={list ? "convoID": "displayAsText"}>{user?.username}</b>
+        barExtender ==="hide-convo-box" ?
+            <b className="convoID-extender">{user?.username}</b>  
+        : 
+            <b className={list ? "convoID": "displayAsText" }>{user?.username}</b>
+        
+        
     );
 }

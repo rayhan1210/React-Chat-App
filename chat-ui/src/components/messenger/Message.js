@@ -18,9 +18,9 @@ function Message() {
     const [ newMsg, setNewMsg ] = useState("");
     const [ arrivedMsg, setArrivedMsg ] = useState(null);
     const socket = useRef();
+    const [ chooser, setChooser ] = useState("")
     let classChooser = null
     // 
-
     const [windowSize, setWindowSize] = useState({
         width: undefined,
         height: undefined,
@@ -40,16 +40,16 @@ function Message() {
     },[]);
 
     //
-    // useEffect(() => {
-    //     socket.current = io("ws://localhost:8900");
-    //     socket.current.on("getMessage", userData => {
-    //         setArrivedMsg({
-    //             senderId: userData.senderId,
-    //             text: userData.text,
-    //             createdAt: Date.now(),
-    //         });
-    //     });
-    // }, []);
+    useEffect(() => {
+        socket.current = io("ws://localhost:8900");
+        socket.current.on("getMessage", userData => {
+            setArrivedMsg({
+                senderId: userData.senderId,
+                text: userData.text,
+                createdAt: Date.now(),
+            });
+        });
+    }, []);
 
     useEffect(() => {
         // console.log("arrivedMsg.sender: " + arrivedMsg);
@@ -59,12 +59,12 @@ function Message() {
     }, [ arrivedMsg, currentchat ]);
 
 
-    // useEffect(() => {
-    //     socket.current.emit("addUser", user._id);
-    //     socket.current.on("getUsers", users => {
-    //         console.log(users); //fro debugging
-    //     })
-    // }, [user])
+    useEffect(() => {
+        socket.current.emit("addUser", user._id);
+        socket.current.on("getUsers", users => {
+            console.log(users); //fro debugging
+        })
+    }, [user])
 
     useEffect(()=>{
         const getUserConvos = async () => {
@@ -89,7 +89,6 @@ function Message() {
         }
         getUserMsgs();
     },[ currentchat ]);
-
 
     // const msgInput = useRef();
     // convoId, senderId, text
@@ -119,59 +118,67 @@ function Message() {
         }
     }
 
+    const changer = () => {
+        if((windowSize.width <= 768 && windowSize.width >= 320) && (!currentchat || currentchat)){
+            classChooser = "hide-convo-box"
+        }else{
+            classChooser = "show-all"
+        }
+        if((windowSize.width <= 768 && windowSize.width >= 320) && currentchat){
+            classChooser = "hide-side-bar"
+        }
+    }
+
     return (
         <>
-        {
-            ((windowSize.width <= 768 && windowSize.width >= 320) && (!currentchat || currentchat)) ? 
-                classChooser = "hide-convo-box"
-            : 
-                classChooser = "show-convo-box"
-        }
-        {console.log(classChooser)}
-        <Container className="messenger-box2 d-flex align-items-center">
+        {changer()}
+        <Container className={ classChooser === "show-all" ? 'messenger-box2 d-flex justify-content-center' : "" ||
+            classChooser === "hide-convo-box" ? 'messenger-box2-decrese d-flex mt-2 justify-content-center' : 'messenger-box2 d-flex justify-content-center' ||
+            classChooser === "hide-side-bar" ? 'messenger-box2-extend d-flex mt-2 justify-content-center' : 'messenger-box2 d-flex justify-content-center'
+            }>
             <Row>
-                <Col className={classChooser === "hide-convo-box" ? 'messenger-extend d-flex mt-2' : 'messenger d-flex mt-2'}>
-                    <div className={classChooser === "hide-convo-box" ? "convo-sideBar-extend" : "convo-sideBar"}>
+                <Col className={'messenger d-flex mt-2'}>
+                    <div className={classChooser === "show-all" ? 'convo-sideBar' : ""  ||
+                        classChooser === "hide-convo-box" ? "convo-sideBar-extend" : "convo-sideBar" || 
+                        classChooser === "hide-side-bar" ? "convo-sideBar-hide" : "convo-sideBar"}>
                         <input placeholder="Search user" className={classChooser === "hide-convo-box" ? "searchUser-extend" : "searchUser"}/>
-                        <div className={classChooser === "hide-convo-box" ? "setConvo-extend" : "setConvo"}>
+                        <div className="set-conv">
                             {   
                             // {/* // is instead {} use () it returns it without having to type return */}
                                 convos.map((c) => (
-                                    <div className={classChooser === "hide-convo-box" ? "seperateConvo-extend" : "seperateConvo"} key={c._id} onClick={(e) => {setCurrentChat(c)}}>
-                                        <Convo key={c._id} convo={c} currentUser={user} list={true}/>
+                                    <div className="seperate-convo" key={c._id} onClick={(e) => {setCurrentChat(c)}}>
+                                        <Convo key={c._id} convo={c} currentUser={user} list={true} barExtender={classChooser}/>
                                     </div>
-                                ))
-                                
+                                ))    
                             }
                             
                         </div> 
                     </div>
-                    
                     { 
                         currentchat ? 
-                            <div className={classChooser}>
+                            <div className={'msg-box'}>
                                 <div className="bg-primary msgHeader">
                                     <button className="bg-light goBackBtn">&#8678;</button>
-                                    <Convo list={false} key={currentchat._id} convo={currentchat} currentUser={user}/>
+                                    <Convo list={false} key={currentchat._id} convo={currentchat} currentUser={user} barExtender={classChooser}/>
                                 </div>
-                                <div className="convo">
+                                <div className={classChooser === "hide-side-bar"?"convo-decrease" : "convo"}>
                                     {msgs.map((m) => (
                                         <Chat key={m._id} message={m} own={m.senderId===user._id} />
                                     ))}        
                                 </div>
                                 <div className="input-group mb-3 msgButton">
-                                    <textarea type="text" className="form-control sendMsg" placeholder="Send message" aria-label="Send message" aria-describedby="basic-addon2"
+                                    <textarea type="text" className="sendMsg" placeholder="Send message" aria-label="Send message" aria-describedby="basic-addon2"
                                         onChange={(e)=>{setNewMsg(e.target.value)}}
                                         //set new msg when user types
                                         value={newMsg}
                                     />
                                     <div className="input-group-append">
-                                        <button className="btn btn-outline-secondary" type="button" onClick={handleSubmittingMsg}>&#10148;</button>
+                                        <button className="send-btn" type="button" onClick={handleSubmittingMsg}>&#10148;</button>
                                     </div>
                                 </div>
                             </div>
                         :  
-                            <div className="NoChatChoosen"></div>
+                            <div className={classChooser === "hide-convo-box" ? "NoChatChoosen-minimize" : "NoChatChoosen"}></div>
                     }
                 </Col>
             </Row> 
