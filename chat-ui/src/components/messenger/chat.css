@@ -2,43 +2,60 @@
     display: flex;
     flex-direction: column;
 }
-.messageTop{
-    display: flex;
-}
-.messageText{
+
+.messageText {
     width: auto;
-    border-radius: 5px;
-    margin: 20px 12px 2px 20px;
-    width: auto;
+    height: 40px;
+    background-color: black;
+    color: rgb(0, 0, 0);
     padding: 5px;
-    background-color: blueviolet;
+    position: relative;
+    margin: 15px;
+    border-radius: 5px;
 }
-.dot {
-    height: 15px;
-    width: 15px;
-    background-color: rgb(17, 16, 16);
-    /* margin: 0 12px 2px 0; */
-    border-radius: 50%;
-    margin-top: 20px;
-    display: inline-block;
+.messageText.own {
+    background-color: rgb(128, 226, 174);
+}
+.messageText.other {
+    background-color: rgb(255, 255, 255);
+}
+
+.messageText.arrow-right:after {
+    content: " ";
+    position: absolute;
+    right: -10px;
+    top: 10px;
+    border-top: 10px solid transparent;
+    border-right: none;
+    border-left: 10px solid rgb(128, 226, 174);
+    border-bottom: 10px solid transparent;
+    
   }
-.message.own{
+
+  .messageText.other.arrow-left:after {
+    content: " ";
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    border-top: 10px solid transparent;
+    border-right: 10px solid rgb(255, 255, 255);
+    border-left: none;
+    border-bottom: 10px solid transparent;
+  }
+
+  .message.own{
     align-items: flex-end;
-    background-color: aqua;
+    background-color: rgb(33, 43, 75);
     /* border-radius: 5px 5px 5px 5px; right-top left-top right-bottom left-bottom */
     width: auto;
     text-align: end;
+    
 }
 .message.other{
     align-items: flex;
     /* overflow-y: auto; */
-    background-color: aqua;
+    background-color: rgb(33, 43, 75);
     /* border-radius: 5px 5px 5px 5px; right-top left-top right-bottom left-bottom */
     width:fit-content;
     /* padding: 20px; */
-}
-
-.message.own .messageText{
-    background-color: aquamarine;
-    color: black;
 }

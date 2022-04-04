@@ -9,7 +9,7 @@ function Signup(props){
     const username = useRef();
     const password = useRef();
     const passwordAgain = useRef();
-    const email = useRef();
+    // const email = useRef();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +18,7 @@ function Signup(props){
         }else{
             const user = {
                 username: username.current.value,
-                email: email.current.value,
+                // email: email.current.value,
                 password: password.current.value 
             }
             try{
@@ -38,13 +38,13 @@ function Signup(props){
                             <Form  className='align-middle p-4 rounded border border-4 border-dark formBG' onSubmit={handleSubmit}>
                                 <p className='signupTitle'>Sign Up</p>
                                 <Form.Group  className='mb-3 w-auto formBG'>
-                                    <Form.Label  className='mx-2 w-auto fw-bold formBG'>Full Name:</Form.Label>
-                                    <Form.Control className='mx-2' ref={username} type="text" placeholder='Enter Full Name'/>
+                                    <Form.Label  className='mx-2 w-auto fw-bold formBG'>Username:</Form.Label>
+                                    <Form.Control className='mx-2' ref={username} type="text" placeholder='Enter Username'/>
                                 </Form.Group>
-                                <Form.Group  className='mb-3 w-auto formBG'>
+                                {/* <Form.Group  className='mb-3 w-auto formBG'>
                                     <Form.Label  className='mx-2 w-auto fw-bold formBG'>Email Adress:</Form.Label>
                                     <Form.Control className='mx-2' ref={email} type="email" placeholder='Enter email'/>
-                                </Form.Group>
+                                </Form.Group> */}
                                 <Form.Group  className='mb-3 w-auto formBG'>
                                     <Form.Label  className='mx-2 w-auto fw-bold formBG'>Password</Form.Label>
                                     <Form.Control className='mx-2' ref={password} type="password" placeholder="Enter Password" autoComplete='off'/>

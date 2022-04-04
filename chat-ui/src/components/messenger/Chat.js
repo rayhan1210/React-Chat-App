@@ -22,7 +22,7 @@ export default function Chat({message, own}) {
             {/* {console.log(user)}
             <p className={own ? "message own" : "message other"}> </p> */}
             {/* <span className="dot"></span> */}
-            <p className="messageText" key={message._id}>{message.text}</p>
+            <p className={own ? "messageText own arrow-right" : "messageText other arrow-left"} key={message._id}>{message.text}</p>
         </div>
     );
 }

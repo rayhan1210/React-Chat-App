@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import AuthReducer from "./Auth_Reducer";
 const INIT_STATE = {
-    user: JSON.parse(localStorage.getItem("user")) || null, //parse string in specific from local storage.
+    user: null,//JSON.parse(localStorage.getItem("user")) || null, //parse string in specific from local storage.
     isFetch: false,
     error: false
 }

@@ -35,7 +35,7 @@ router.post("/login", async (req, res) => {
 
     try{
         const user = await User.findOne({
-            email: req.body.email
+            username: req.body.username
         });
         !user && res.status(404).json("user not fund");
 

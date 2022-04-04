@@ -2,8 +2,8 @@
     display: inline-block;
     width: 193px;
     background-color: rgb(255, 255, 255);
+    padding: 0 0 0 5px;
     border-radius: 2px;
-    border: 1px solid rgb(22, 120, 206);
 }
 
 .convoID:hover{
@@ -15,7 +15,7 @@
     width: 100%;
     background-color: rgb(255, 255, 255);
     border-radius: 2px;
-    border: 1px solid rgb(22, 120, 206);
+    padding: 0 0 0 5px;
     padding-left: 2px;
 }
 
@@ -24,9 +24,9 @@
     cursor: pointer;
 }
 .displayAsText{
-    background-color: rgb(243, 227, 7);
+    background-color: rgb(3, 83, 89);
+    color: aliceblue;
     margin-left: 2px;
     padding: 0 5px 0 5px;
-    border-radius: 2px;
-    
+    border-top-left-radius: 5px;
 }

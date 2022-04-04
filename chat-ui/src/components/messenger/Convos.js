@@ -7,17 +7,22 @@ export default function Convo({convo, currentUser, list, barExtender}){
 
     useEffect(() => {
         const userFriendsId = convo.members.find((m) => m !== currentUser._id);
-
+        let isMounted = true;
         const getUser = async () => {
             try{
                 const res = await axios("/users?userId="+userFriendsId);
-                setUser(res.data);
+                if(isMounted){
+                    setUser(res.data);
+                }
                 // console.log(res);
             }catch(err){
                 console.log(err);
             }
         };
         getUser();
+        return () =>{
+            isMounted = false;
+        };
     }, [currentUser, convo]);
     return (
         // design it

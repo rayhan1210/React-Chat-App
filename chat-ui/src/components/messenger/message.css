@@ -10,14 +10,18 @@
     width: fit-content;
     height: fit-content
 }
-.messenger{
-    /* background-color: blue; */
-    /* height: 500px; */
-    /* border-radius: 10px; */
+.chatmenu{
+    float: right;
+    margin-right: 5px;
+    background-color: rgb(41, 55, 100);
+    color: rgb(255, 255, 255);
+}
+.chatmenu:hover{
+    cursor: pointer;
 }
 
 .convo-sideBar{
-    background-color: blueviolet;
+    background-color: rgb(0, 36, 53);
     height: 500px;
     border-radius: 5px;
     padding: 5px;
@@ -26,13 +30,14 @@
 .convo-sideBar-extend{
     width: 300px;
     height: 500px;
-    background-color: blueviolet;
+    background-color: rgb(0, 36, 53);
     padding: 5px;
     border-radius: 10px;
 }
 .searchUser{
     width: 193px;
     background-color: antiquewhite;
+    padding-left: 5px;
     /* border-radius: 2px; */
     border-color: brown;
     border: 2px solid rgb(22, 106, 216);
@@ -48,27 +53,28 @@
 .seperateConvo-extend{
     /* width: auto; */
     background-color: white;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 .seperate-convo{
     background-color: rgb(255, 255, 255);
-    border-radius: 2px;
+    border-radius: 5px;
     margin-top: 2px;
 }
 .set-conv{
-    background-color: blueviolet;
+    background-color: rgb(0, 36, 53);
 }
 .convo-sideBar-hide{
     display: none;
 }
 .msg-box{
-    height: 500px;
+    height: 512px;
     width: 400px;
     border-radius: 10px;
     margin-left: 2px;
 }
 .msgHeader{
     border-radius: 5px 5px 0 0;
+    background-color: rgb(41, 55, 100);
 }
 .goBackBtn{
     border-radius: 5px 5px 5px 5px;
@@ -77,36 +83,51 @@
 .convo-decrease{
     overflow-y: auto;
     height: 81%;
-    background-color: aqua;
-    /*width: 400px;
-    height: 500px;
-    border-radius: 5px; */
     
 }
 .convo{
     overflow-y: auto;
     height: 85.55%;
-    background-color: aqua;
+    background-color: rgb(33, 43, 75);
+}
+.scroller{
+    background-color: rgb(33, 43, 75);
 }
 .msgButton{
     height: 40px;
 }
 .sendMsg{
     height: 38px;
-    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 5px;
     width: 89.66%;
     border: 1px solid rgb(78, 76, 76);
+    background-color: white;
+    resize: none;
 }
 .send-btn{
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 5px;
     width: 42px;
     height: 38px;
     border: 1px solid rgb(78, 76, 76);
+    background-color: rgb(33, 43, 75);
 }
 .NoChatChoosen{
-    background-color: aqua;
+    background-color: rgb(33, 43, 75);
     width: 400px;
     height: 500px;
     border-radius: 5px;
     margin-left: 2px;
+}
+.sendMsg:focus{
+    outline: 0;
+}
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-track{
+    background-color: rgb(33, 43, 75);
+}
+::-webkit-scrollbar-thumb{
+    background-image: linear-gradient(rgb(33, 43, 75) ,rgb(0, 174, 255), yellow);
+    border-radius: 25px;
 }

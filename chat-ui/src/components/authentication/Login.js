@@ -9,13 +9,13 @@ function Login(){
     // can use useState hook but
     //  what will happen is when user writes anything the input everytime it happes, it will render the Login componenr
     // so aim should be to prevent re-render as much as possible
-    const email = useRef();
+    const username = useRef();
     const password = useRef();
     const navigate = useNavigate();
     const { error, dispatch } = useContext(AuthContext); //destructuring
     const handleSubmit = (e) => {
         e.preventDefault(); //prevents page from refreshing on click/submitting
-        LoginApiCall({email: email.current.value, password: password.current.value}, dispatch);
+        LoginApiCall({username: username.current.value, password: password.current.value}, dispatch);
     };
     return(
         <>
@@ -26,11 +26,11 @@ function Login(){
                             <Form  className='align-middle p-5 m-5 rounded border border-4 border-dark formBG' onSubmit={handleSubmit} >
                                 <p className="loginTitle">Login</p>
                                 <Form.Group  className='mb-3 w-auto formBG'>
-                                    <Form.Label  className='mx-2 w-auto fw-bold formBG'>Email Adress:</Form.Label>
+                                    <Form.Label  className='mx-2 w-auto fw-bold formBG'>Username:</Form.Label>
                                     <Form.Control className='mx-2' 
                                         type="text" required 
-                                        placeholder='Enter email' 
-                                        ref={email}
+                                        placeholder='Enter Username' 
+                                        ref={username}
                                     />
                                 </Form.Group>
                                 <Form.Group  className='mb-3 w-auto formBG'>

@@ -18,14 +18,14 @@ function Message() {
     const [ newMsg, setNewMsg ] = useState("");
     const [ arrivedMsg, setArrivedMsg ] = useState(null);
     const socket = useRef();
-    const [ chooser, setChooser ] = useState("")
-    let classChooser = null
+    const scrollRef = useRef();
+    let classChooser = null;
     // 
     const [windowSize, setWindowSize] = useState({
         width: undefined,
         height: undefined,
     });
-
+    //
     //get the updated window size each time window size changes using useeffect hook which performs for each render of the component
     useEffect(() => {
         function handleResize(){
@@ -64,7 +64,7 @@ function Message() {
         socket.current.on("getUsers", users => {
             console.log(users); //fro debugging
         })
-    }, [user])
+    }, [user]);
 
     useEffect(()=>{
         const getUserConvos = async () => {
@@ -111,13 +111,13 @@ function Message() {
         try{
             const res = await axios.post("/msgs", msg);
             setMsgs([...msgs, res.data]); //add the newMSg posted to msgs useState which consst of array using
-            // "...msgs" => which means it grabs all of the values that already exist in msgs
+            // "...msgs" => which means it will grab all of the values that already exist in msgs
             setNewMsg(""); //wanna reset the newMsg values after sending it so it doesnt overlay
         }catch(err){
             console.log(err);
         }
     }
-
+    //
     const changer = () => {
         if((windowSize.width <= 768 && windowSize.width >= 320) && (!currentchat || currentchat)){
             classChooser = "hide-convo-box"
@@ -128,7 +128,14 @@ function Message() {
             classChooser = "hide-side-bar"
         }
     }
-
+    const handleGoBack = () => {
+        classChooser = "show-all";
+        console.log("clicked");
+    }
+     //creating auto scroll to bottom of page
+     useEffect(() => {
+        scrollRef.current?.scrollIntoView({behavior: "smooth"}) //produces smoother animation when scroll bar goes to bottom upon refresh or seding new msg
+    },[msgs]);
     return (
         <>
         {changer()}
@@ -157,13 +164,21 @@ function Message() {
                     { 
                         currentchat ? 
                             <div className={'msg-box'}>
-                                <div className="bg-primary msgHeader">
-                                    <button className="bg-light goBackBtn">&#8678;</button>
+                                <div className="msgHeader">
+                                    {classChooser === "hide-side-bar" ? 
+                                        <button className="goBackBtn" onClick={() => {
+                                            console.log("clicked")
+                                        }}>&#8678;</button>
+                                    : ""}
+                                    {/* <button className={classChooser === "hide-side-bar" ? "bg-light goBackBtn" : "goBackBtn"}>&#8678;</button> */}
                                     <Convo list={false} key={currentchat._id} convo={currentchat} currentUser={user} barExtender={classChooser}/>
+                                    <span className="chatmenu">&#8942;</span>
                                 </div>
                                 <div className={classChooser === "hide-side-bar"?"convo-decrease" : "convo"}>
                                     {msgs.map((m) => (
-                                        <Chat key={m._id} message={m} own={m.senderId===user._id} />
+                                        <div ref={scrollRef} key={m._id} className="scroller">
+                                         <Chat key={m._id} message={m} own={m.senderId===user._id} />
+                                        </div>
                                     ))}        
                                 </div>
                                 <div className="input-group mb-3 msgButton">
@@ -186,25 +201,5 @@ function Message() {
         </>
     );
 }
-
-// function GetWindowSize(){
-    // const [windowSize, setWindowSize] = useState({
-    //     width: undefined,
-    //     height: undefined,
-    // });
-
-    // useEffect(() => {
-    //     function handleResize(){
-    //         setWindowSize({
-    //             width: window.innerWidth,
-    //             height: window.innerHeight
-    //         });
-    //     }
-    //     window.addEventListener("resize", handleResize)
-    //     handleResize()
-    //     return () => window.removeEventListener("resize", handleResize);
-    // },[]);
-//     return windowSize;
-// }
 
 export default Message;
