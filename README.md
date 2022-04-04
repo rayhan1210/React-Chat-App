@@ -10,3 +10,7 @@ Simple real time chat application implemented using react.js, nodejs, expressjs 
 - Profile settings
   - Change username
   - Change password
+
+Chat-App DEMO:
+https://user-images.githubusercontent.com/77035054/161539182-9a32f8ef-b1bb-48de-914c-20f9cc8cd89a.mp4
+
